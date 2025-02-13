@@ -43,6 +43,8 @@
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
   --radius: 0.6rem;
+  --header-height: 48px;
+  --page-head-height: 60px;
 }
 
 .dark {
@@ -101,6 +103,22 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground text-base;
+  }
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #e5e7eb;
 }
 
 @layer base {

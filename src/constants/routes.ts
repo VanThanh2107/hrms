@@ -1,1 +1,9 @@
 export const HOME = "/";
+export const HR = "/hr";
+export const PROJECT = "/project";
+export const RECRUITMENT = "/recruitment";
+export const PERFORMANCE = "/performance";
+export const SHIFT_AND_ATTENDANCE = "/shift-&-attendance";
+export const USERS = "/users";
+export const SETTINGS = "/settings";
+export const PROFILE = "/profile";
