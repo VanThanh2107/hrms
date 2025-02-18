@@ -1,12 +1,24 @@
-export interface SidebarItem {
+export interface ISidebarItem {
   title: string;
   icon: React.ElementType;
   path: string;
-  children?: SidebarItem[];
+  children?: ISidebarItem[];
 }
 
-export interface UserDropdownItem {
+export interface IUserDropdownItem {
   title: string;
   path?: string;
   onClick?: () => void;
+}
+
+export interface IBodyMenuItem {
+  title: string;
+  link?: string;
+  control?: boolean;
+  children?: IBodyMenuItem[];
+}
+
+export interface DateTimeFormatOption {
+  value: string;
+  label: string;
 }

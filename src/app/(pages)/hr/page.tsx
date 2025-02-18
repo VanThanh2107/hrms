@@ -1,232 +1,209 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  ArrowUpRight,
-  BarChart,
-  Calendar,
-  ChevronRight,
-  ClipboardList,
-  Settings,
-  Users,
-} from "lucide-react";
-import React from "react";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { ChevronRight, Settings } from 'lucide-react';
+import React from 'react';
+import ChartSection from './chart-section';
+import { BlockContent, BlockItem } from '@/components/ui/block-content';
+import { IBodyMenuItem } from '@/interfaces';
+import * as ROUTES from '@/constants/routes';
+import { WidgetSpacer } from '@/components/ui/widget';
+import SiteLayout from '@/layouts/site-layout';
+import QuickLinksPanel from '../../../components/common/quick-links-panel';
+import CategoryGrid from '@/components/common/category-grid';
+
+const shortcuts: IBodyMenuItem[] = [
+  {
+    title: 'Employee',
+    link: ROUTES.EMPLOYEE,
+    control: true,
+  },
+  {
+    title: 'leave application',
+    link: ROUTES.LEAVE_APPLICATION,
+  },
+  {
+    title: 'HR dashboard',
+    link: ROUTES.HR_DASHBOARD,
+  },
+  {
+    title: 'recruitment dashboard',
+    link: ROUTES.RECRUITMENT_DASHBOARD,
+  },
+  {
+    title: 'employee lifecycle dashboard',
+    link: ROUTES.EMPLOYEE_LIFECYCLE_DASHBOARD,
+  },
+  {
+    title: 'attendace dashboard',
+    link: ROUTES.ATTENDANCE_DASHBOARD,
+  },
+  {
+    title: 'expense claims dashboard',
+    link: ROUTES.EXPENSE_CLAIMS_DASHBOARD,
+  },
+];
+const reportsAndMastersMenu: IBodyMenuItem[] = [
+  {
+    title: 'Setup',
+    children: [
+      { title: 'Company', link: '/company' },
+      { title: 'Branch', link: '/branch' },
+      { title: 'Department', link: '/department' },
+      { title: 'Designation', link: '/designation' },
+    ],
+  },
+  {
+    title: 'Settings',
+    children: [
+      { title: 'HR Settings', link: '/hr-settings' },
+      { title: 'Daily Work Summary Group', link: '/daily-work-summary-group' },
+      { title: 'Team Updates', link: '/team-updates' },
+    ],
+  },
+  {
+    title: 'Employee',
+    children: [
+      { title: 'Employee', link: '/employee' },
+      { title: 'Employee Group', link: '/employee-group' },
+      { title: 'Employee Grade', link: '/employee-grade' },
+    ],
+  },
+  {
+    title: 'Attendance',
+    children: [
+      { title: 'Attendance', link: '/attendance' },
+      { title: 'Attendance Request', link: '/attendance-request' },
+      { title: 'Employee Checkin', link: '/employee-checkin' },
+    ],
+  },
+  {
+    title: 'Leaves',
+    children: [
+      { title: 'Leave Application', link: '/leave-application' },
+      {
+        title: 'Compensatory Leave Request',
+        link: '/compensatory-leave-request',
+      },
+    ],
+  },
+  {
+    title: 'Expense Claim',
+    children: [
+      { title: 'Expense Claim', link: '/expense-claim' },
+      { title: 'Employee Advance', link: '/employee-advance' },
+      { title: 'Travel Request', link: '/travel-request' },
+    ],
+  },
+  {
+    title: 'Key Reports',
+    children: [
+      { title: 'Monthly Attendance Sheet', link: '/monthly-attendance-sheet' },
+      { title: 'Recruitment Analytics', link: '/recruitment-analytics' },
+      { title: 'Employee Analytics', link: '/employee-analytics' },
+      { title: 'Employee Leave Balance', link: '/employee-leave-balance' },
+      {
+        title: 'Employee Leave Balance Summary',
+        link: '/employee-leave-balance-summary',
+      },
+      { title: 'Employee Advance Summary', link: '/employee-advance-summary' },
+      { title: 'Employee Exits', link: '/employee-exits' },
+    ],
+  },
+  {
+    title: 'Other Reports',
+    children: [
+      { title: 'Employee Information', link: '/employee-information' },
+      { title: 'Employee Birthday', link: '/employee-birthday' },
+      {
+        title: 'Employees Working on a Holiday',
+        link: '/employees-working-holiday',
+      },
+      {
+        title: 'Daily Work Summary Replies',
+        link: '/daily-work-summary-replies',
+      },
+    ],
+  },
+];
 
 const HrPage = () => {
   return (
-    <>
-      <div className="flex flex-col gap-6 p-6">
-        {/* Setup Section */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-semibold">
-                Let&apos;s Set Up the Human Resource Module.
-              </h1>
-              <p className="text-gray-600">Employee, Leaves, and more.</p>
-            </div>
-            <Button variant="ghost">Dismiss</Button>
+    <SiteLayout>
+      {/* Setup Section */}
+      <BlockItem className="mb-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold">
+              Let&apos;s Set Up the Human Resource Module.
+            </h1>
+            <p className="text-gray-600">Employee, Leaves, and more.</p>
           </div>
+          <Button variant="outline">Dismiss</Button>
+        </div>
+      </BlockItem>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Settings className="h-5 w-5 text-gray-500" />
-                      <span className="font-medium">HR Settings</span>
-                    </div>
-                    <Button variant="ghost" size="sm">
-                      Skip
-                    </Button>
-                  </div>
-                  {[
-                    "Create Holiday List",
-                    "Create Employee",
-                    "Import Data from Spreadsheet",
-                    "Create Leave Type",
-                    "Create Leave Allocation",
-                    "Create Leave Application",
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="h-5 w-5 rounded-full border-2 border-gray-300 flex items-center justify-center">
-                        <ChevronRight className="h-3 w-3 text-gray-500" />
-                      </div>
-                      <span className="text-gray-700">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">HR Settings</h3>
-                <p className="text-gray-600 mb-4">
-                  Hr Settings consists of major settings related to Employee
-                  Lifecycle, Leave Management, etc. Click on Explore, to explore
-                  Hr Settings.
-                </p>
-                <Button>Explore</Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Chart Section */}
+      <BlockItem className="mb-4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-medium">
-                    Hiring vs Attrition Count
-                  </h3>
-                  <p className="text-sm text-gray-500">Last synced just now</p>
-                </div>
-                <div className="flex gap-2">
-                  <Button variant="ghost" size="icon">
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
-                  <Button variant="ghost" size="icon">
-                    <BarChart className="h-4 w-4" />
+            <CardContent className="pt-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Settings className="h-5 w-5 text-gray-500" />
+                    <span className="font-medium">HR Settings</span>
+                  </div>
+                  <Button variant="ghost" size="sm">
+                    Skip
                   </Button>
                 </div>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-48 flex items-end justify-center gap-4">
-                <div className="w-20 h-32 bg-blue-200 rounded-t-lg"></div>
-                <div className="w-20 h-24 bg-blue-600 rounded-t-lg"></div>
-              </div>
-              <div className="flex justify-center gap-4 mt-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-blue-200 rounded-sm"></div>
-                  <span className="text-sm">Hiring Count</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-blue-600 rounded-sm"></div>
-                  <span className="text-sm">Attrition Count</span>
-                </div>
+                {[
+                  'Create Holiday List',
+                  'Create Employee',
+                  'Import Data from Spreadsheet',
+                  'Create Leave Type',
+                  'Create Leave Allocation',
+                  'Create Leave Application',
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-gray-300">
+                      <ChevronRight className="h-3 w-3 text-gray-500" />
+                    </div>
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
 
-          {/* Shortcuts */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold">Your Shortcuts</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { title: "Employee", count: "0 Active", icon: Users },
-                { title: "Leave Application", icon: Calendar },
-                { title: "HR Dashboard", icon: BarChart },
-                { title: "Recruitment Dashboard", icon: ClipboardList },
-              ].map((item, index) => (
-                <Card key={index} className="hover:bg-gray-50 cursor-pointer">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium">{item.title}</h4>
-                        {item.count && (
-                          <p className="text-sm text-gray-500">{item.count}</p>
-                        )}
-                      </div>
-                      <item.icon className="h-5 w-5 text-gray-500" />
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-          <div className="flex-1 p-6">
-            {/* Masters & Reports */}
-            <section>
-              <h2 className="text-lg font-semibold mb-6">Masters & Reports</h2>
-              <div className="grid grid-cols-3 gap-8">
-                {/* Setup */}
-                <div>
-                  <h3 className="font-medium mb-4">Setup</h3>
-                  <div className="space-y-3">
-                    {[
-                      "Holiday List",
-                      "Leave Type",
-                      "Leave Period",
-                      "Leave Policy",
-                      "Leave Block List",
-                    ].map((item) => (
-                      <button
-                        key={item}
-                        className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-                      >
-                        <span>{item}</span>
-                        <ArrowUpRight className="w-4 h-4" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Allocation */}
-                <div>
-                  <h3 className="font-medium mb-4">Allocation</h3>
-                  <div className="space-y-3">
-                    {[
-                      "Leave Allocation",
-                      "Leave Policy Assignment",
-                      "Leave Control Panel",
-                      "Leave Encashment",
-                    ].map((item) => (
-                      <button
-                        key={item}
-                        className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-                      >
-                        <span>{item}</span>
-                        <ArrowUpRight className="w-4 h-4" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Application */}
-                <div>
-                  <h3 className="font-medium mb-4">Application</h3>
-                  <div className="space-y-3">
-                    {["Leave Application", "Compensatory Leave Request"].map(
-                      (item) => (
-                        <button
-                          key={item}
-                          className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-                        >
-                          <span>{item}</span>
-                          <ArrowUpRight className="w-4 h-4" />
-                        </button>
-                      )
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Reports */}
-              <div className="mt-8">
-                <h3 className="font-medium mb-4">Reports</h3>
-                <div className="space-y-3">
-                  {[
-                    "Employee Leave Balance",
-                    "Employee Leave Balance Summary",
-                    "Employees working on a holiday",
-                  ].map((item) => (
-                    <button
-                      key={item}
-                      className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-                    >
-                      <span>{item}</span>
-                      <ArrowUpRight className="w-4 h-4" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </div>
+          <Card>
+            <CardContent className="pt-6">
+              <h3 className="mb-4 text-xl font-semibold">HR Settings</h3>
+              <p className="mb-4 text-gray-600">
+                Hr Settings consists of major settings related to Employee
+                Lifecycle, Leave Management, etc. Click on Explore, to explore
+                Hr Settings.
+              </p>
+              <Button variant={'outline'}>Explore</Button>
+            </CardContent>
+          </Card>
         </div>
-      </div>
-    </>
+      </BlockItem>
+
+      {/* Chart Section */}
+      <BlockItem className="mb-4">
+        <ChartSection />
+      </BlockItem>
+
+      {/* Shortcuts */}
+      <QuickLinksPanel title="Your Shortcuts" list={shortcuts} />
+      <BlockItem>
+        <BlockContent>
+          <WidgetSpacer />
+        </BlockContent>
+      </BlockItem>
+      {/* Reports & Masters */}
+      <CategoryGrid title="Reports & Masters" list={reportsAndMastersMenu} />
+    </SiteLayout>
   );
 };
 

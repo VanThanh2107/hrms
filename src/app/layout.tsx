@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "@/layouts/header";
-import DashboardLayout from "@/layouts/dashboard-layout";
-import { krub } from "@/utils";
+import type { Metadata } from 'next';
+import './globals.css';
+import Header from '@/layouts/header';
+import { krub } from '@/utils';
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: 'Dashboard',
 };
 
 export default function RootLayout({
@@ -17,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`antialiased ${krub.className}`}>
         <Header />
-        <DashboardLayout>{children}</DashboardLayout>
+        {children}
       </body>
     </html>
   );
